@@ -1,5 +1,7 @@
 package spring5_webmvc2_study.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,10 +61,13 @@ public class RegisterController {
 //	}
 
 	@PostMapping("/register/step3")
-	public String handleStep3(RegisterRequest regReq, Errors errors) {
-		new RegisterRequestValidator().validate(regReq, errors);
+	public String handleStep3(@Valid RegisterRequest regReq, Errors errors) {
 		if (errors.hasErrors())
 			return "register/step2";
+		if (!regReq.isPasswordEqualToConfirmPassword()) {
+			errors.rejectValue("confirmPassword", "nomatch");
+			return "register/step2";
+		}
 		try {
 			memberRegisterService.regist(regReq);
 			return "register/step3";

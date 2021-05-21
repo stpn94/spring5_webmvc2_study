@@ -2,6 +2,7 @@ package spring5_webmvc2_study.config;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -12,8 +13,8 @@ import spring5_webmvc2_study.spring.MemberDao;
 import spring5_webmvc2_study.spring.MemberRegisterService;
 
 @Configuration
-//@ComponentScan(basePackages = { "spring5_webmvc_study.spring" })
 @EnableTransactionManagement
+@ComponentScan(basePackages = { "spring5_webmvc2_study.spring" })
 public class MemberConfig {
 
 	@Bean(destroyMethod = "close")
