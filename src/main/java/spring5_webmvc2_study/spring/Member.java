@@ -47,5 +47,9 @@ public class Member {
 			throw new WrongIdPasswordException();
 		this.password = newPassword;
 	}
+	// 암호 일치 여부를 확인하기 위한 matchPassword() 메서드를 Member클래스에 추가
+	public boolean matchPassword(String password) {
+		return this.password.equals(password);
+	}
 
 }
