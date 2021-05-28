@@ -44,10 +44,10 @@ public class MemberConfig {
 		return new MemberDao(dataSource());
 	}
 
-	@Bean
-	public MemberRegisterService memberRegSvc() {
-		return new MemberRegisterService(memberDao());
-	}
+//	@Bean
+//	public MemberRegisterService memberRegSvc() {
+//		return new MemberRegisterService(memberDao());
+//	}
 
 	@Bean
 	public ChangePasswordService changePwdSvc() {

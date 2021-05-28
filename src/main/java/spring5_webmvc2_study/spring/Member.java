@@ -2,16 +2,20 @@ package spring5_webmvc2_study.spring;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({ "password" })
 public class Member {
 
 	private Long id;
 	private String email;
 	private String password;
 	private String name;
+//	@JsonFormat(pattern = "yyyyMMddHHmmss")
 	private LocalDateTime registerDateTime;
 
-	public Member(String email, String password, 
-			String name, LocalDateTime regDateTime) {
+	public Member(String email, String password, String name, LocalDateTime regDateTime) {
 		this.email = email;
 		this.password = password;
 		this.name = name;
@@ -47,6 +51,7 @@ public class Member {
 			throw new WrongIdPasswordException();
 		this.password = newPassword;
 	}
+
 	// 암호 일치 여부를 확인하기 위한 matchPassword() 메서드를 Member클래스에 추가
 	public boolean matchPassword(String password) {
 		return this.password.equals(password);
